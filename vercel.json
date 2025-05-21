@@ -58,23 +58,27 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/blog",
-      "destination": "/blog/index.html"
-    },
-    {
-      "source": "/blog/:slug",
-      "destination": "/blog/index.html"
-    },
-    {
-      "source": "/((?!.*\\.html$).*)",
-      "destination": "/$1.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/404.html",
-      "statusCode": 404
-    }
-  ]
+ "rewrites": [
+  {
+    "source": "/blog/:slug",
+    "destination": "/blog/index.html"
+  },
+  {
+    "source": "/contact",
+    "destination": "/contact.html"
+  },
+  {
+    "source": "/blog",
+    "destination": "/blog/index.html"
+  },
+  {
+    "source": "/((?!.*\\.html$).*)",
+    "destination": "/$1.html"
+  },
+  {
+    "source": "/(.*)",
+    "destination": "/404.html",
+    "statusCode": 404
+  }
+]
 } 
