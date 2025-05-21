@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Sayfa Bulunamadı | Basri Akkaya</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 2rem;
+            color: #4af626;
+        }
+        .error-code {
+            font-family: 'Courier New', monospace;
+            font-size: 8rem;
+            margin: 0;
+            text-shadow: 0 0 10px #4af626;
+        }
+        .error-text {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        .terminal-text {
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="close"></span>
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+            </div>
+            <div class="terminal-title">error@terminal:~$</div>
+        </div>
+
+        <div class="error-container">
+            <h1 class="error-code">404</h1>
+            <p class="error-text">Hedef sistem bulunamadı.</p>
+            
+            <div class="terminal-text">
+                <p>error@terminal:~$ locate requested_page</p>
+                <p>Error: Target not found in database</p>
+                <p>error@terminal:~$ sudo find / -name requested_page</p>
+                <p>Permission denied: Access restricted</p>
+                <p>error@terminal:~$ cd /home/basriakkaya<span class="blink">_</span></p>
+            </div>
+            
+            <a href="/" class="link-btn">
+                <i class="fas fa-terminal"></i> Ana Terminale Dön
+                <span class="link-hover-text">→</span>
+            </a>
+        </div>
+    </div>
+    <script src="matrix.js"></script>
+</body>
+</html> 

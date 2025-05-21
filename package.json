@@ -1,0 +1,21 @@
+{
+  "name": "basriakkaya-website",
+  "version": "1.0.0",
+  "description": "Basri Akkaya | Siber Güvenlik Terminali & Blog",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "marked": "^11.1.1",
+    "highlight.js": "^11.9.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.12",
+    "autoprefixer": "^10.4.17",
+    "cssnano": "^6.0.3"
+  },
+  "author": "Basri Akkaya",
+  "license": "MIT"
+} 

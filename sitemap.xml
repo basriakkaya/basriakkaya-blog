@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Ana Sayfa -->
+    <url>
+        <loc>https://basriakkaya.com</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+
+    <!-- Blog Ana Sayfa -->
+    <url>
+        <loc>https://basriakkaya.com/blog</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+
+    <!-- Blog Yazıları -->
+    <url>
+        <loc>https://basriakkaya.com/blog/cyber-kill-chain-modeli</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/etik-hacker-yol-haritasi</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/startup-siber-guvenlik-maliyetleri</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/quantum-sifreleme-gelismeleri</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/microsoft-defender-zafiyeti</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/chatgpt-guvenlik-riskleri</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/android-bankaci-trojan</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
+        <loc>https://basriakkaya.com/blog/wifi-protokol-guncelleme</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+</urlset> 

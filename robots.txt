@@ -1,0 +1,16 @@
+# https://basriakkaya.com robots.txt
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /blog/posts/
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap
+Sitemap: https://basriakkaya.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Host
+Host: https://basriakkaya.com 

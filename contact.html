@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İşbirliği | Basri Akkaya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="close"></span>
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+            </div>
+            <div class="terminal-title">kage@terminal:~/contact$</div>
+        </div>
+        
+        <div class="terminal-content" id="terminalContent">
+            <div class="line">
+                <span class="prompt">kage@terminal:~$</span>
+                <span class="command">whoami</span>
+            </div>
+            <div class="output">Basri Akkaya - Siber Güvenlik Araştırmacısı</div>
+
+            <div class="line">
+                <span class="prompt">kage@terminal:~$</span>
+                <span class="command">cat contact_info.txt</span>
+            </div>
+            <div class="output">
+                <pre class="ascii-art">
+    ________  ________  ________   _________  ________  ________  _________   
+   |\   ____\|\   __  \|\   ___  \|\___   ___\\   __  \|\   ____\|\___   ___\ 
+   \ \  \___|\ \  \|\  \ \  \\ \  \|___ \  \_\ \  \|\  \ \  \___|    \ \  \  
+    \ \  \    \ \  \\\  \ \  \\ \  \   \ \  \ \ \   __  \ \  \        \ \  \ 
+     \ \  \____\ \  \\\  \ \  \\ \  \   \ \  \ \ \  \ \  \ \  \____    \ \  \
+      \ \_______\ \_______\ \__\\ \__\   \ \__\ \ \__\ \__\ \_______\   \ \__\
+       \|_______|\|_______|\|__| \|__|    \|__|  \|__|\|__|\|_______|    \|__|
+                </pre>
+            </div>
+
+            <div class="line">
+                <span class="prompt">kage@terminal:~$</span>
+                <span class="command">./send_mail.sh</span>
+            </div>
+            <div class="output">İşbirliği teklifleri için mail atabilirsiniz:</div>
+            <div class="output blink">
+                <a href="mailto:hello@basriakkaya.com" class="mail-link">hello@basriakkaya.com</a>
+            </div>
+
+            <div class="line">
+                <span class="prompt">kage@terminal:~$</span>
+                <span class="command">cat message.txt</span>
+            </div>
+            <div class="output">
+                "Güvenlik dünyasında yeni maceralar için hazırım. 
+                Birlikte harika projeler geliştirebiliriz! 🚀"
+            </div>
+
+            <div class="line">
+                <span class="prompt">kage@terminal:~$</span>
+                <span class="command" id="currentCommand">_</span>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-terminal"></i> Ana Sayfaya Dön
+            </a>
+        </div>
+    </div>
+    <script src="contact.js"></script>
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Matrix rain configuration
+        const fontSize = 14;
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        let columns = canvas.width / fontSize;
+        let drops = Array(Math.floor(columns)).fill(1);
+        let speeds = Array(Math.floor(columns)).fill(0).map(() => Math.random() * 2 + 1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 12, 15, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                const brightness = Math.random() * 0.5 + 0.5;
+                const color = i % 2 === 0 ? 
+                    `rgba(74, 246, 38, ${brightness})` : 
+                    `rgba(114, 255, 74, ${brightness})`;
+                
+                ctx.fillStyle = color;
+                ctx.font = `${fontSize}px monospace`;
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i] += speeds[i] * 0.15;
+            }
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
+</html> 
