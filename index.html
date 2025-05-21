@@ -82,7 +82,7 @@
         padding: 0.5em 0;
         border-radius: 10px 10px 0 0;
         border-bottom: 1px solid #222;
-        justify-content: flex-start;
+        justify-content: space-between;
         position: relative;
         margin-bottom: 0.5em;
         width: 100%;
@@ -122,6 +122,33 @@
         from { transform: scale(0.9); opacity: 0; }
         to   { transform: scale(1); opacity: 1; }
     }
+    .lang-switch {
+        margin: 0;
+        text-align: right;
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 4px;
+    }
+    .lang-switch button {
+        background: #181c1f;
+        color: #4af626;
+        border: 1.5px solid #4af626;
+        border-radius: 5px;
+        padding: 2px 10px;
+        margin: 0 1px;
+        font-family: inherit;
+        font-size: 0.95em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        min-width: 36px;
+        min-height: 28px;
+    }
+    .lang-switch button:hover, .lang-switch button.active {
+        background: #4af626;
+        color: #181c1f;
+    }
     </style>
 </head>
 <body>
@@ -134,6 +161,11 @@
                 <span class="maximize"></span>
             </div>
             <div class="terminal-title">kage@terminal:~$</div>
+            <div class="lang-switch">
+                <button onclick="setLang('tr')" id="btn-tr">TR</button>
+                <button onclick="setLang('en')" id="btn-en">EN</button>
+                <button onclick="setLang('mk')" id="btn-mk">MK</button>
+            </div>
         </div>
 
         <div class="glitch-container">
@@ -141,8 +173,8 @@
             <div class="glitch-effect"></div>
         </div>
 
-        <h1 class="cyber-text">Basri Akkaya</h1>
-        <p class="description">Siber güvenlik bir hobi değil, dijital bir sorumluluktur.</p>
+        <h1 id="mainTitle" class="cyber-text">Basri Akkaya</h1>
+        <p id="mainDesc" class="description">Siber güvenlik bir hobi değil, dijital bir sorumluluktur.</p>
 
         <div class="links">
             <a href="https://github.com/basriakkaya" class="link-btn" target="_blank">
@@ -150,8 +182,8 @@
                 <span class="link-hover-text">→</span>
             </a>
 
-            <a href="#" class="link-btn" onclick="showPopup('Güncelleme Aşamasında', 'Bu bölüm yakında aktif olacak. Takipte kalın!'); return false;">
-                <i class="fas fa-terminal"></i> Blog
+            <a id="blogBtn" href="#" class="link-btn" onclick="showPopup('blog'); return false;">
+                <i class="fas fa-terminal"></i> <span id="blogBtnText">Blog</span>
                 <span class="link-hover-text">→</span>
             </a>
 
@@ -175,8 +207,8 @@
                 <span class="link-hover-text">→</span>
             </a>
 
-            <a href="#" class="link-btn" onclick="showPopup('İşbirliği için', '<a href=\'mailto:hello@basriakkaya.com\' style=\'color:#4af626;font-weight:bold;\'>hello@basriakkaya.com</a>'); return false;">
-                <i class="fas fa-handshake"></i> İşbirliği
+            <a href="#" class="link-btn" onclick="showPopup('contact'); return false;">
+                <i class="fas fa-handshake"></i> <span id="contactBtnText">İşbirliği</span>
                 <span class="link-hover-text">→</span>
             </a>
         </div>
@@ -208,6 +240,11 @@
             <span class="terminal-btn yellow"></span>
             <span class="terminal-btn green"></span>
           </div>
+          <div class="lang-switch">
+            <button onclick="setLang('tr')" id="btn-tr">TR</button>
+            <button onclick="setLang('en')" id="btn-en">EN</button>
+            <button onclick="setLang('mk')" id="btn-mk">MK</button>
+          </div>
         </div>
         <div class="custom-popup-inner">
           <h2 id="popupTitle"></h2>
@@ -217,9 +254,10 @@
     </div>
 
     <script>
-    function showPopup(title, body) {
-        document.getElementById('popupTitle').innerText = title;
-        document.getElementById('popupBody').innerHTML = body;
+    function showPopup(type) {
+        const lang = localStorage.getItem('lang') || 'tr';
+        document.getElementById('popupTitle').innerText = translations[lang][type + 'Title'];
+        document.getElementById('popupBody').innerText = translations[lang][type + 'Desc'];
         document.getElementById('customPopup').classList.add('active');
     }
     function closePopup() {
@@ -233,6 +271,62 @@
     document.getElementById('customPopup').addEventListener('click', function(e) {
         if (e.target === this) closePopup();
     });
+    </script>
+
+    <script>
+    const translations = {
+      tr: {
+        mainTitle: "Basri Akkaya",
+        mainDesc: "Siber güvenlik bir hobi değil, dijital bir sorumluluktur.",
+        blog: "Blog",
+        blogTitle: "Güncelleme Aşamasında",
+        blogDesc: "Bu bölüm yakında aktif olacak. Takipte kalın!",
+        contactTitle: "İşbirliği için",
+        contactDesc: "hello@basriakkaya.com adresine mail atabilirsiniz.",
+        // Diğer metinler...
+      },
+      en: {
+        mainTitle: "Basri Akkaya",
+        mainDesc: "Cybersecurity is not a hobby, it's a digital responsibility.",
+        blog: "Blog",
+        blogTitle: "Under Construction",
+        blogDesc: "This section will be active soon. Stay tuned!",
+        contactTitle: "For Collaboration",
+        contactDesc: "You can email to hello@basriakkaya.com.",
+        // ...
+      },
+      mk: {
+        mainTitle: "Basri Akkaya",
+        mainDesc: "Кибер безбедноста не е хоби, туку дигитална одговорност.",
+        blog: "Блог",
+        blogTitle: "Во Изработка",
+        blogDesc: "Овој дел наскоро ќе биде активен. Следете не!",
+        contactTitle: "За соработка",
+        contactDesc: "Можете да испратите е-пошта на hello@basriakkaya.com.",
+        // ...
+      }
+    };
+    </script>
+
+    <script>
+    function setLang(lang) {
+      document.getElementById('mainTitle').innerText = translations[lang].mainTitle;
+      document.getElementById('mainDesc').innerText = translations[lang].mainDesc;
+      document.getElementById('blogBtnText').innerText = translations[lang].blog;
+      document.getElementById('contactBtnText').innerText = translations[lang].contactTitle;
+      // Aktif buton vurgusu
+      ['tr','en','mk'].forEach(l => {
+        document.getElementById('btn-' + l).classList.remove('active');
+      });
+      document.getElementById('btn-' + lang).classList.add('active');
+      localStorage.setItem('lang', lang);
+    }
+
+    // Sayfa açıldığında varsayılan dili yükle
+    window.onload = function() {
+      const lang = localStorage.getItem('lang') || 'tr';
+      setLang(lang);
+    };
     </script>
 </body>
 </html> 
