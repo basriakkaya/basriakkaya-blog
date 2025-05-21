@@ -43,6 +43,86 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://basriakkaya.com">
+
+    <style>
+    .custom-popup-overlay {
+        display: none;
+        position: fixed;
+        z-index: 99999;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        background: rgba(10,12,15,0.85);
+        align-items: center;
+        justify-content: center;
+    }
+    .custom-popup-overlay.active {
+        display: flex;
+    }
+    .custom-popup-content {
+        background: #181c1f;
+        color: #4af626;
+        padding: 0 0 32px 0;
+        border-radius: 10px;
+        min-width: 320px;
+        max-width: 90vw;
+        text-align: center;
+        font-family: 'Fira Mono', 'Consolas', 'Menlo', 'monospace';
+        position: relative;
+        margin: 0 auto;
+        box-sizing: border-box;
+        animation: popupIn 0.2s;
+        overflow: hidden;
+    }
+    .custom-popup-inner {
+        padding: 24px 32px 0 32px;
+    }
+    .custom-popup-header {
+        display: flex;
+        align-items: center;
+        background: #23272a;
+        padding: 0.5em 0;
+        border-radius: 10px 10px 0 0;
+        border-bottom: 1px solid #222;
+        justify-content: flex-start;
+        position: relative;
+        margin-bottom: 0.5em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .terminal-btns {
+        display: flex;
+        gap: 0.4em;
+        margin-left: 12px;
+    }
+    .terminal-btn {
+        width: 13px; height: 13px; border-radius: 50%; display: inline-block;
+        margin-right: 0.2em;
+    }
+    .terminal-btn.red { background: #ff5f56; border: 1.5px solid #e0443e; }
+    .terminal-btn.yellow { background: #ffbd2e; border: 1.5px solid #dea123; }
+    .terminal-btn.green { background: #27c93f; border: 1.5px solid #13a10e; }
+    .custom-popup-close {
+        position: absolute; right: 18px; top: 8px; font-size: 1.5rem; color: #4af626; cursor: pointer;
+        background: none; border: none; outline: none;
+        transition: color 0.2s;
+    }
+    .custom-popup-close:hover { color: #ff5f56; }
+    .custom-popup-content h2 {
+        font-size: 1.15em;
+        margin: 1.2em 0 0.5em 0;
+        font-family: inherit;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    .custom-popup-content #popupBody {
+        font-size: 0.95em;
+        margin-bottom: 0.5em;
+        font-family: inherit;
+    }
+    @keyframes popupIn {
+        from { transform: scale(0.9); opacity: 0; }
+        to   { transform: scale(1); opacity: 1; }
+    }
+    </style>
 </head>
 <body>
     <canvas id="matrixCanvas"></canvas>
@@ -70,15 +150,13 @@
                 <span class="link-hover-text">→</span>
             </a>
 
-            <a href="blog/index.html" class="link-btn">
+            <a href="#" class="link-btn" onclick="showPopup('Güncelleme Aşamasında', 'Bu bölüm yakında aktif olacak. Takipte kalın!'); return false;">
                 <i class="fas fa-terminal"></i> Blog
                 <span class="link-hover-text">→</span>
             </a>
 
-                        <a href="https://www.youtube.com/@basrikkya" class="link-btn" target="_blank">                <i class="fab fa-youtube"></i> YouTube                <span class="link-hover-text">→</span>            </a>
-
-            <a href="https://t.me/basriakkaya" class="link-btn" target="_blank">
-                <i class="fab fa-telegram"></i> Telegram
+            <a href="https://www.youtube.com/@basrikkya" class="link-btn" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube
                 <span class="link-hover-text">→</span>
             </a>
 
@@ -97,7 +175,7 @@
                 <span class="link-hover-text">→</span>
             </a>
 
-            <a href="contact.html" class="link-btn">
+            <a href="#" class="link-btn" onclick="showPopup('İşbirliği için', '<a href=\'mailto:hello@basriakkaya.com\' style=\'color:#4af626;font-weight:bold;\'>hello@basriakkaya.com</a>'); return false;">
                 <i class="fas fa-handshake"></i> İşbirliği
                 <span class="link-hover-text">→</span>
             </a>
@@ -120,5 +198,41 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script defer src="/_vercel/speed-insights/script.js"></script>
+
+    <!-- Popup Modal -->
+    <div id="customPopup" class="custom-popup-overlay">
+      <div class="custom-popup-content">
+        <div class="custom-popup-header">
+          <div class="terminal-btns">
+            <span class="terminal-btn red" onclick="closePopup()" title="Kapat"></span>
+            <span class="terminal-btn yellow"></span>
+            <span class="terminal-btn green"></span>
+          </div>
+        </div>
+        <div class="custom-popup-inner">
+          <h2 id="popupTitle"></h2>
+          <div id="popupBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    function showPopup(title, body) {
+        document.getElementById('popupTitle').innerText = title;
+        document.getElementById('popupBody').innerHTML = body;
+        document.getElementById('customPopup').classList.add('active');
+    }
+    function closePopup() {
+        document.getElementById('customPopup').classList.remove('active');
+    }
+    // ESC ile kapama
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePopup();
+    });
+    // Dışına tıklayınca kapama
+    document.getElementById('customPopup').addEventListener('click', function(e) {
+        if (e.target === this) closePopup();
+    });
+    </script>
 </body>
 </html> 
