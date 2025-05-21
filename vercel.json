@@ -64,7 +64,7 @@
       "destination": "/blog/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!.*\\.html$).*)",
       "destination": "/$1.html"
     },
     {
