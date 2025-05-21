@@ -62,10 +62,15 @@
     {
       "source": "/blog/:slug",
       "destination": "/blog/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/$1.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/404.html",
+      "statusCode": 404
     }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
   ]
 } 
